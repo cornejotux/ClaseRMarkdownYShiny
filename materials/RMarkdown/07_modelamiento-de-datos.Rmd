@@ -1,0 +1,194 @@
+# Modelamiento de datos y datos ordenados{#cap7}
+
+## Objetivos
+
+En este capítulo veremos:
+
+- Conceptos básicos del modelamiento de datos relacionales y datos ordenados (_tidy data_).
+- Como diseñar y crear tablas de datos efectivas.
+
+## Beneficios de los sistemas de datos relacionales
+
+- Poderoso sistema de filtrado y búsqueda.
+- Manejo de sets de datos grandes y complejos.
+- Obliga a la integridad de los datos.
+- Disminuye los errores producto de las actualizaciones redundantes.
+
+## Organización de datos
+
+```{r excelOrg1, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Planilla excel infernal.'}
+knitr::include_graphics("images/7.1_excel-org-01.png")
+```
+
+##3 Tablas múltiples
+
+```{r excelOrg2, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Múltiples tablas en una misma planilla. Otro caso de un excel infernal.'}
+knitr::include_graphics("images/7.2_excel-org-02.png")
+```
+
+##3 Observaciones inconsistentes
+
+```{r excelOrg3, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Observaciones diferentes en una misma fila de la tabla. Otro caso de un excel infernal.'}
+knitr::include_graphics("images/7.3_excel-org-03.png")
+```
+
+### Inconsistencia en las variables
+
+```{r excelOrg4, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Variables diferentes en la misma columna.'}
+knitr::include_graphics("images/7.4_excel-org-04.png")
+```
+
+### Estadísticas y sumas al margen
+
+```{r excelOrg5, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Valores que pueden ser calculados partir de los datos de la tabla. Otra mala práctica.'}
+knitr::include_graphics("images/7.5_excel-org-05.png")
+```
+
+## Modelamiento de datos adecuado
+
+### Datos De-normalizados
+
+En la figura \@ref(fig:tableDenorm1) se presenta una tabla donde existen diferentes entidades medidas o muestreadas que se
+combinaron en una misma fila.
+
+```{r tableDenorm1, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Valores obtenidos en diferentes entidades en la misma fila.'}
+knitr::include_graphics("images/7.6_table-denorm.png")
+```
+
+En el ejemplo presentado en la figura \@ref(fig:tableDenorm1), se puede ver como cada columna tiene información tanto de los
+sitios (`site`) donde se registraron las observaciones, así como de 2 individuos, aparentemente de diferentes especies, que
+fueron encontrados en el sitio. Estos son datos _no_ estan *normalizados*.
+
+La gente se refiere comúnmente a esto como **formato ancho** o de **mantel de cocina**, porque las observaciones están repartidas
+a lo ancho de las columnas.  Nótese que si encuentra una nueva especie en un muestreo, tendríamos que agregar una nueva columna 
+en la tabla. Esto es muy difícil de analizar, entender y mantener.
+
+### Datos tabulares
+
+__Observaciones__. Una forma mucho más efectiva de modelado de datos es organizando las observaciones acerca de cada tipo de
+entidad en su propia tabla. Esto resulta en:
+
+- tablas separadas para cada entidad medida.
+- Cada fila representa una única observación de la entidad.
+- Las observaciones (filas) son únicas.
+- Esto es lo que se conoce como datos *normalizados* (*tidy data*).
+
+__Variables__. Además, en el caso de datos normalizados, podemos esperar que las variables estén organizada de tal forma que:
+
+- Todos los valores en una columna representan lo mismo.
+- Todas las columnas pertenecen a la misma entidad observada (ej. fila).
+- Cada columna representa o una variable identificadora o una variable medida.
+
+En la figura \@ref(fig:tableNorm2) hay un ejemplo de datos normalizados, la primera tabla se refiere a la colección de datos
+sobre los individuos de varias especies y la segunda tabla son las observaciones que contienen las propiedades de los sitios
+donde las especies estaban presentes.
+
+```{r tableNorm2, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Ejemplo de tablas con datos normalizados.'}
+knitr::include_graphics("images/7.7_tables-norm.png")
+```
+
+## Claves primarias y foráneas
+
+Cuando se usan datos normalizados, es común usar identificadores únicos para  hacer referencia a observaciones particulares,
+esto nos permite hacer uniones entre dos o más tablas. Los dos tipos de identificadores que se usan comúnmente con datos
+relacionales son:
+
+- _Clave primaria_: Identificador único para cada una de las observaciones de la entidad, es uno por fila.
+- _Clave foránea_: Hace referencia una clave primaria que está en otra tabla (referencia para unir).
+
+Por ejemplo, en la segunda tabla de la figura \@ref(fig:tableNorm3), la columna `site` es la **clave primaria** (primary key)
+de esa tabla. La puede identificar como tal porque es un identificador único para una observación realizada en un sitio y que 
+corresponde a una fila de la tabla. En la primera tabla, sin embargo, la columna sitio (`site`) es una **clave foránea** 
+(foreign key) que hace referencia a la clave primaria presente en la segunda tabla. Esta relación nos permite identificar que
+la primera medición de la altura (height) para la especie `DAPU` se realizó en el sitio con el nombre `Taku`.
+
+```{r tableNorm3, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Explicación de la relación entre clave primaria y foranea entre dos tablas con datos normalizados.'}
+knitr::include_graphics("images/7.8_tables-keys.png")
+```
+
+### Modelo de Relación-Entidad
+
+Un modelo de Relación-Entidad nos permite representar en forma compacta la estructura de las tablas en una base de datos 
+relacional, incluyendo las claves primarias y foráneas de cada una de las tablas.
+
+```{r modeloRE, echo=FALSE, out.width = '70%', fig.align = 'center', fig.cap = 'Representación gráfica de una relación-entidad de dos tablas, incluyendo las claves con que se unen..'}
+knitr::include_graphics("images/7.9_plotobs-diagram.png")
+```
+
+En el modelo presentado en la figura \@ref(fig:modeloRE), se puede ver que cada sitio en la tabla `SITES` **debe** tener uno
+o más observaciones en la tabla `PLOTOBS`, donde cada `PLOTOBS` tiene un y **solo un** `SITE`.
+
+## Combinando datos {#joins}
+
+Frecuentemente, los análisis de datos requieren que se combinen estas tablas que se manejan en forma separada. Esto se puede
+hacer de múltiples formas y estas uniones van a depender de como las tablas estén relacionadas (fig. \@ref(fig:sqlJoins)).
+
+Cuando se conceptualizan las uniones, uno puede pensar en dos tablas, una a la **izquierda** (left) y otra a la **derecha**
+(right). La unión más común (generalmente usada) es cuando se combina un subgrupo de filas que tienen parejas en ambas tablas
+(a la izquierda y derecha): esto se conoce como **INNER JOIN** (unión interna). Existen otros tipos de uniones posibles. Un 
+**LEFT JOIN** (unión a la izquierda), toma todas las filas de la tabla a la izquierda y las combina con los datos que se emparejan
+en la tabla a la derecha. Un **RIGHT JOIN** (unión a la derecha) es lo mismo, sólo que en este caso se mantienen todas las filas
+presentes en la tabla de la derecha y se agregan aquellas que tienen parejas en la izquierda. Finalmente, un **FULL OUTER JOIN**
+(unión total) incluye todas las filas en ambas tablas, esta unión es raramente de uso práctico.
+
+```{r sqlJoins, echo=FALSE, out.width = '80%', fig.align = 'center', fig.cap = 'Las regiones en azul representan las filas que son incluidas en el resultado. Para un INNER join, las filas resultantes son todas las filas en A que tienen una pareja en B.'}
+knitr::include_graphics("images/7.10_sql-joins.png")
+```
+
+## Guía simple para datos efectivos
+
+- Diseñe la tabla para agrear filas, no columnas!
+- Cada columna corresponde a un tipo de variable.
+- Elimine la redundancia.
+- Archive los datos sin corregir.
+- Use encabezados.
+- Use formatos que no sean privativos.
+- Use nombres descriptivos.
+- No incluya espacios.
+
+- [Borer et al. 2009. **Some Simple Guidelines for Effective Data Management.** Bulletin of the Ecological Society of America.](http://matt.magisa.org/pubs/borer-esa-2009.pdf)
+- [White et al. 2013. **Nine simple ways to make it easier to (re)use your data.** Ideas in Ecology and Evolution 6.](https://doi.org/10.4033/iee.2013.6b.6.f)
+
+## Ejercicio de modelamiento de datos
+
+- Forme grupos.
+
+Trabajaremos con datos correspondientes a una versión normalizada de datos con capturas comerciales de salmón entre 1878 y
+1997 reportadas por @byerly, de ADF&G (Alaska Department of Fish and Game o Departamento de Pesca y Caza de Alaska). El set
+de datos y las referencias a la fuente original puede ser vista en el archivo de acceso público en:  https://knb.ecoinformatics.org/#view/df35b.304.2.
+Este sitio incluye los metadatos que describen todo el set de datos, incluyendo la descripción de las columnas. Aquí esta la 
+primera tabla de capturas (`catch`):
+
+```{r catch, cache=TRUE, echo=FALSE}
+library(DT)
+catch <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1", method = "libcurl"),
+                  stringsAsFactors = FALSE)
+datatable(catch)
+```
+
+Y aquí la tabla que define las regiones (`region_defs`):
+
+```{r regions, cache=TRUE, echo=FALSE}
+region_defs <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1", method = "libcurl"),
+                        stringsAsFactors = FALSE)
+datatable(region_defs)
+```
+
+- Dibuje un modelo RE para las tablas.
+  - Indique cuales son las claves primarias y foráneas.
+  - ¿Está la tabla `catch` en una forma normalizada?
+    - Si es así ¿Cuál es la entidad (única) que fue observada?
+    - Si no ¿Como reestructuraría los datos para que queden normalizados?
+- Dibuje un nuevo diagrama RE mostrando esta estructura de datos re-diseñada
+
+```{r modeloER, echo=FALSE, out.width = '80%', fig.align = 'center', fig.cap = 'Guí de nomenclatura para el direño de un modelo de Relación-Entidad (RE).'}
+knitr::include_graphics("images/7.11_ERD_Relationship_Symbols_Quick_Reference-1.png")
+```
+
+## Recursos relacionados
+
+- [Borer et al. 2009. **Some Simple Guidelines for Effective Data Management.** Bulletin of the Ecological Society of America.](http://matt.magisa.org/pubs/borer-esa-2009.pdf)
+- [White et al. 2013. **Nine simple ways to make it easier to (re)use your data.** Ideas in Ecology and Evolution 6.](https://doi.org/10.4033/iee.2013.6b.6.f)
+- [Software Carpentry SQL tutorial](https://swcarpentry.github.io/sql-novice-survey/)
+- [Tidy Data](http://vita.had.co.nz/papers/tidy-data.pdf)
+
