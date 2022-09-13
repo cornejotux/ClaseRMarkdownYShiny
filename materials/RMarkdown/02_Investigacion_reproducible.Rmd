@@ -15,9 +15,11 @@ En este capítulo veremos:
 
 ## Investigación reproducible
 
-Las reproducibilidad es fundamental en la ciencia, que a su vez se basa en observaciones empíricas con las 
+Las reproducibilidad es fundamental en la ciencia, que a su vez se basa en observaciones 
+empíricas con las 
 que se construyen o define modelos explicativos.  
-La reproducibilidad por su parte, envuelve todo el ciclo de vida de la ciencia, incluyendo aspectos como la 
+La reproducibilidad por su parte, envuelve todo el ciclo de vida de la ciencia,
+incluyendo aspectos como la 
 consistencia metodológica y el tratamiento del sesgo. En este curso nos vamos a enfocar en la 
 **reproducibilidad computacional**, entendiendo esto como la habilidad de documentar datos, análisis y 
 modelos con la suficiente información para que otros investigadores sean capaces de entender e
