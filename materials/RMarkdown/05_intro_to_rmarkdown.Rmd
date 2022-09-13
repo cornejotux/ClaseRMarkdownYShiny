@@ -1,0 +1,405 @@
+# RMarkdown
+
+## Objetivos
+
+En este capítulo veremos:
+
+- RMarkdown.
+- Introducción a las funciones básicas incluidas en RStudio
+- Como usar las páginas de ayuda.
+
+## Introducción
+
+Ahora que ya conoce un poco de la sintaxis básica de R, podemos comenzar a aprender sobre RMarkdown.
+La experiencia nos dice que te vas a volver loco haciendo los análsis o modelos en los cuales trabajes 
+y vas a fallar en generar un flujo de trabajo reproducible. Peor aún, si tratas de desarrollar código
+directamente en la consola de R. RMarkdown es realmente clave para la investigación colaborativa, 
+es por esto que vamos a comenzar rapidamente a aprender como usarlo y lo seguiremos uasndo durante
+el resto del curso.
+
+Un archivo de RMarkdown nos va a ayudar a _tejer_ un texto _markdown_ con fragmentos de código de R
+que es evaluado y cuyas salidas, como tablas y gráficos, son incluidas en el documento final.
+
+Para abrir un nuevo documento de RMarkdown siga los siguiente pasos:
+
+File -> New File -> RMarkdown... -> Document of output format HTML, OK.
+
+
+```{r RStudioNew, echo=FALSE, out.width = '75%', fig.align = 'center', fig.cap = 'Captura de pantalla de la interfase para la creación de un proyecto nuevo de RStudio.'}
+knitr::include_graphics("images/5.1_rstudio_new-rmd-doc-html.png")
+```
+
+Le puede dar un título como "Mi Proyecto". Luego clic en OK. 
+
+OK, primero que todo: Al abrir el archivo, vamos a ver un 4° panel de la consola de RStudio, este panel
+es un editor de texto que nos permite abrir varios archivos en un único panel.
+
+Ahora démosle una mirada a este archivo que acabamos de crear - a primera vista se puede ver que no
+está en blanco; hay un texto inicial que se entrega por defecto. Hay algunas cosas que podemos
+identificar en el texto: 
+
+- Está en inglés (no se preocupe, ¡lo vamos a reescribir!)
+- Hay secciones en con texto con el fondo blando y el código R está en secciones plomas (por defecto,
+estos colores del fondo se pueden cambiar). 
+
+```{r rmarkdown, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Imagen con el código fuente de un archivo RMarkdown.'}
+knitr::include_graphics("images/5.2_rmarkdown.png")
+```
+
+<br>
+Lo primero que vamos a hacer es generar el código HTML (Knit HTML) haciendo clic en la pelota de lana
+azul en la parte superior del panel con el archivo RMarkdown. Cuando haga clic por primera vez en este 
+botón, RStudio pedirá que guarde el archivo. Cree un nuevo directorio en algún lugar que le sea fácil 
+encontrarlo posteriormente (por ejemplo Escritorio o Mis Documentos),  dele un nombre que tenga sentido
+y le permita recordarlo después (ej: `clase_rmarkdown`).
+<br>
+
+```{r rmarkdownSideSide, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Imagen con el código fuente y pagina resultante de un archivo RMarkdown.'}
+knitr::include_graphics("images/5.3_rmarkdown_side_by_side.png")
+```
+
+¿Que cosas puede notar entre al comparar los dos archivos? 
+
+Las **secciones de código R** plomas están rodeadas de 3 tics y `{r LABEL}`. Estas secciones son 
+evaluadas por R, generando una salida de texto en el caso de  `summary(cars)` y de un gráfico en el
+caso de `plot(pressure)`.
+
+Note como el código `plot(pressure)` no se muestra en la salida HTML porque la sección de código 
+R tiene la opción `echo=FALSE`.
+
+Algunos otros detalles...
+
+Este archivo de RMarkdown tiene 2 lenguajes incluidos: **R** y **Markdown**. 
+
+Aun no sabemos mucho de R, pero ya puede ver que estamos tomando el resumen de los datos llamados
+'cars' y luego los graficamos. Hay mucho más para aprender sobre R y vamos a trabajar eso en las
+próximas clases.
+
+El segundo lenguaje que incluye el archivo es Markdown. Este es un lenguaje que para dar formato
+a texto plano y tiene aproximadamente 15 reglas para conocer.
+
+Vea la siguiente sintaxis:
+
+- **Títulos**: son procesados en múltiples niveles con: `#`, `##`
+- **Negrita**: `**palabra**`
+
+Hay muchas tablas de consejos [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
+que te puede utilizar para obtener ayuda, una de esas está incluida en RStudio: para abrirla vaya
+a Help > Markdown Quick Reference
+
+**Importante**: El símbolo de gato, número o para los milenials hashtag `#` tiene un 
+significado diferente al que reconoce R cuando es usado en Markdown: 
+
+- en R, un gato indica que es un comentario y no será evaluado. Se pueden usar tantos como se quiera:
+`#` es equivalente a `######`. Es sólo una cuestión de estilos.
+- en Markdown, un gato indica el nivel del título. Y cuantos use tienen un efecto: `#` es un "título
+nivel 1", lo que significa que es la fuente de mayor tamaño y que está al tope de la jerarquía. 
+`###` es un título nivel 3 y se muestra anidado bajo el título `#` y `##`.
+
+Más sobre esto en: http://rmarkdown.rstudio.com/
+
+### Actividad
+
+1. En Markdown, escriba un texto en cursiva (Itálica) y haga una lista numerada. Luego agregue algunos
+subtítulos. Use la Referencia de Uso Rápido de Markdown (en barra del menú: Help > Markdown Quick 
+Reference). 
+1. Haga clic en Knit para general el archivo html. 
+
+### Secciones del código {#ejecutarCodEnRmd}
+
+OK. Ahora practiquemos con algunos comandos de R.
+
+Cree una nueva sección en en su RMarkdown siguiendo alguno de estos pasos:
+
+- Clic "Insert > R" en la parte superior del panel de edición.
+- Escriba a mano 
+   \```{r}
+   \```
+- Si no ha borrado las secciones por defecto que venían con el archivo, editelas!
+
+Ahora escribamos un poco de código R. 
+
+```
+x <- 4*3
+x
+```
+
+Note que al apretar la tecla Enter el comando no se ejecuta; recuerde que esto es sólo un archivo
+de texto. Para ejecutar las secciones de código R (secciones en plomo) se deben enviar a la consola.
+¿Cómo se hace eso?
+
+Hay varias formas de hacerlo: 
+
+1. Copiar y pegar los comandos en la consola.
+1. Seleccionar la línea (o poner el curso en ella) y hacer clic en 'Run'. Esto está 
+disponible desde:
+    a. la barra arriba del archivo (flecha verde).
+    b. la barra menú: Code > Run Selected Line(s).
+    c. combinación de teclas: control-enter en Windows o command-enter en macOS.
+1. Clic en la flecha verde en el lado superior derecho de su sección de código.
+
+### Actividad
+
+Agregue otros comandos a su archivo. Ejecútelos de las tres formas indicadas más arriba. Finalmente,
+guarde su archivo RMarkdown. 
+
+## Funciones de R
+
+Hasta ahora hemos aprendido la sintaxis básica y conceptos de programación en  R, como navegar
+en RStudio y RMarkdown, pero no hemos hecho nada complicado o interesante aún. Aquí es donde las
+_funciones_ de R son útiles.
+
+Una función es una forma de agrupar una serie de comandos para desarrollar una tarea en una forma
+reusable. Cuando una función es ejecutada, se produce un valor de salida. Nosotros generalmente 
+decimos que "llamamos" una función cuando la ejecutamos. Lo interesante sobre las funciones es que
+pueden ser creadas por los usuarios y guardadas como un objeto usando el operador de asignación 
+('<-'), de esta forma es posible escribir una función para lo que sea que necesitemos. Tenga en 
+cuenta que R tiene una colección gigantesca de funciones pre-existentes, las que además son expandibles
+con paquetes o librerías. Para comenzar, vamos a usar algunas funciones de R básicas ya incluidas.
+
+Todas las funciones se llaman usando la misma sintaxis: nombre de la función seguido de un paréntesis 
+donde se entrega lo que necesite la función para funcionar. Las piezas de información que la función
+necesita para hacer su trabajo se conocen como argumentos. De esta forma, la sintaxis para usar 
+una función se ve así: `valor_resultante <- nombre_de_función(argumento1 = valor1, argumento2 = valor2, 
+...)`. 
+
+### Ejemplo simple
+
+Para tomar un ejemplo muy simple, vamos a utilizar una función que calcula el promedio, `mean()`. 
+Como se puede imaginar, esta función calcula el promedio de los números entregados como argumentos. 
+
+Creemos un vector con pesos:
+
+```{r}
+peso_kg <- c(55, 25, 12)
+```
+
+y ahora usemos la función `mean` para calcular el peso promedio.
+
+```{r}
+mean(peso_kg)
+```
+
+## Páginas de ayuda
+
+### Obteniendo ayuda
+
+¿Qué pasa ahora si sabe cuál es la función que necesita pero no cómo funciona? Afortunadamente 
+RStudio entrega una forma muy fácil para acceder a las páginas de documentación y ayuda.
+
+Para acceder a la ayuda para la función `mean`, entre el siguiente comando en la consola:
+
+```{r, eval = F}
+?mean
+```
+
+Esto abrirá el panel de ayuda en la sección inferior derecha de RStudio.
+
+Las páginas de ayuda están dividas en secciones, la documentación está en inglés:
+
+ - _Description_: Se entrega una descripción extendida de lo que hace la función.
+ - _Usage_: Los argumentos de la función y sus valores por defecto.
+ - _Arguments_: Una explicación de los datos que cada argumento espera.
+ - _Details_: Detalle que sean relevantes de conocer.
+ - _Value_: Los resultados devuelve la función.
+ - _See Also_: Otras funciones que podrían resultar útiles en este contexto.
+ - _Examples_: Algunos ejemplos de como usar la función.
+
+
+### Actividad
+
+> Ejercicio: Hable con su(s) compañero(s) y dele una mirada a las ayudas de algunas  funciones 
+que usted espera que existan. Aquí les dejo algunas ideas: `?getwd()`, `?plot()`,  `min()`, 
+`max()`, `?log()`.
+
+También existe ayuda para cuando usted no está seguro del nombre de la función, en esos casos 
+solo es necesaroio usar doble símbolo de pregunta:
+
+```{r, eval=F}
+??install 
+```
+
+No todas las funciones tienen (o requieren) argumentos:
+
+```{r}
+date()
+```
+
+## Leyendo un archivo de datos a R
+
+Hasta ahora hemos aprendido como asignar valores a objetos de R y lo que es una función, pero no
+hemos hecho nada aún con datos reales. Ahora vamos a introducir la función `read.csv`, que nos permite
+cargar a R datos reales desde un archivo CSV. Esta función se usa generalmente en las primeras líneas
+del código que escribamos. 
+
+Ya que esta será nuestra primera vez usando esta función, primero leeremos la página de ayuda de 
+`read.csv`. La ayuda tiene mucha información, mostrando que la función acepta muchos argumentos, sin 
+embargo el primero de ellos es el más importante - tenemos que decirle que archivo es el que va a leer. 
+
+### Descargue un archivo desde el Arctic Data Center
+
+Navegue al set de datos de Craig Tweedie  @tweedie_2009 que está publicado en el Arctic Data Center y 
+descargue el primer archivo _csv_ llamado "BGchem2008data.csv". Mueva este archivo desde su carpeta de 
+Descargas a un directorio de fácil acceso. Yo recomiendo crear un directorio llamado `datos` en el 
+directorio que creó anteriormente para las otras actividades de esta clase.
+
+Ahora tenemos que indicrle a la función `read.csv` como encontrar el archivo que queremos leer. Para 
+esto se usa el argumento `file` (archivo) que se puede ver en la sección usage (uso) de la página 
+de ayuda. En RMarkdown, se pueden usar path absolutos (que comienzan con su directorio `~/`) o path 
+relativos, que son **relativos a la ubicación del archivo RMarkdown**. RStudio y RMarkdown tiene la 
+capacidad de autocompletar cuando se usan paths relativos, por lo que usaremos ese sistema. Asumiendo 
+que ya movió el archivo a el directorio dentro de la carpeta `archivos_clase_R` llamada `datos`, su 
+función `read.csv` puede ser llamada de la siguiente forma:
+
+```{r, eval = F}
+bg_chem <- read.csv("datos/5.1_BGchem2008data.csv") 
+## El nombre fue cambiado para hacer referencia que el archivo csv se usa en el capítulo 5.
+```
+
+Ahora debería tener un objeto en R llamado `bg_chem` de la clase `data.frame` en su ambiente de 
+trabajo. Verifique `data.frame` existe y contiene los datos.
+
+Note que en las páginas de ayuda hay una gran cantidad de argumentos que no fueron necesarios de 
+utilizar. Algunos argumento en las llamadas a funciones son opcionales y algunos otros son requeridos. 
+Los argumentos opcionales son  mostrados en la sección de uso como un par `nombre = valor`, donde se 
+muestra el valor que usa esa opción por defecto. Si usted no especifica el valor para la oción en 
+particular, la función asume el valor por defecto (ejemplo: `header = TRUE` para `read.csv`). Los 
+argumentos requeridos sólo muestran el nombre del argumento, sin un valor asociado. Fíjese que el 
+único argumento requerido para `read.csv` es `file`.
+
+Siempre se puede especificar un argumento de la forma `nombre = valor`. Pero si no lo hace, R intentará
+identificarlos basado en el orden en que fueron entregados. De esta forma, en el comando de más arriba,
+se asume que queremos `file = "data/5.1_BGchem2008data.csv"`, ya que _file_ es el primer argumento. 
+Si queremos agregar algún otro argumento, por ejemplo `stringsAsFactors`, vamos a necesitar especificarlos 
+usando `nombre = valor`, ya que el segundo argumento es `header`. Para las funciones que llamo comúnmente, 
+uso esto sólo para los primeros 2 argumentos, para los que están en la 3a posición 
+o más alla siempre uso el par `nombre = valor`.
+
+Muchos usuarios de R (incluyéndome) sobrescriben el argumento por defecto de `stringsAsFactors` usando
+la siguiente llamada:
+
+```{r}
+bg_chem <- read.csv("data/5.1_BGchem2008data.csv", stringsAsFactors = FALSE)
+```
+
+Esto muy útil, ya que de otra forma las columnas que contiene datos tipo strings son transformados a 
+factores, pudiendo generar esto problemas y confusiones.
+
+## Usando `data.frames`
+
+Un `data.frame` en R es una estructura de datos de dos dimensiones, es similar a como se comporta una
+hoja de cálculos. Un `data.frame` es una colección de filas y columnas de datos, donde cada columna 
+tiene un nombre y representa una variable, siendo cada fila a una medición de esa variable. De esta 
+forma, cuando ejecutamos `read.csv`, el objeto `bg_chem` fue creado como un objeto tipo `data.frame`. 
+Hay muchas formas para explorar un `data.frame` en R y RStudio. A continuación mostramos algunos:
+
+- Clic en la palabra `bg_chem` en el panel _Environment_.
+- Clic en la flecha junto a `bg_chem` en el panel de _Environment_
+- Ejecute `head(bg_chem)` en la consola.
+- Ejecute `View(bg_chem)` en la consola.
+
+Usualmente las funciones se ejecutan en columnas individuales de un `data.frame`. Para llamar a una
+columna específica se usa el operador `$`. Por ejemplo, digamos que se quiere mirar las primeras filas 
+sólo de la columna `Date`. Para esto se debe ejecutar en la consola:
+
+```{r}
+head(bg_chem$Date)
+```
+
+¿Cómo se puede calcular la temperatura promedio de las muestras tomadas por el CTD?
+
+```{r}
+mean(bg_chem$CTD_Temperature)
+```
+
+O si quisiéramos guardar este promedio como una variable para ser utilizada después:
+
+```{r}
+temp_promedio <- mean(bg_chem$CTD_Temperature)
+```
+
+También es posible crear algunos gráficos simples utilizando este operador (`$`).
+
+```{r}
+plot(bg_chem$CTD_Depth, bg_chem$CTD_Temperature)
+```
+
+En R existen muchas herramientas y funciones más avanzadas para crear mejores gráficos 
+(incluso con una sintaxis más simple). Veremos algunas de ellas en capitulos posteriores.
+
+### Actividad
+
+> Ejercicio: Tome algunos minutos en explorar este set de datos. Pruebe algunas 
+funciones en las columnas utilizando el operador `$` para seleccionar una columna
+única. Experimente haciendo gráficos y generando resúmenes de los datos. 
+
+## Solución de problemas
+
+### Mi RMarkdown no genera (knit) el PDF
+
+Si se obtiene un error cuando se trata de generrl el PDF, donde dice que su computador no tiene la 
+instalación de LaTeX, existen dos posibles problemas:
+
+1. Su computador no tiene LaTeX instalado.
+1. Su computador si tiene LaTeX instalado, pero RStudio no lo puede encontrar (no está definida la ruta
+o path).
+
+Si usted ya usa LaTeX (para escribir papers por ejemplo), seguro que su problema esté en la segunda
+categoría. Arreglar esto sólo requiere redireccionar RStudio a donde este instalado LaTeX, pero esto
+no lo explicaremos acá.
+
+Si su problema es que no tiene instalado LaTeX y **está seguro que no lo tiene**! puede usar el paquete
+de R `tinytex`, este se instala muy fácilmente y es reconocido automáticamente por RStudio. Para hacer
+esto sólo necesita tener derechos de administrador del computador.
+
+Para instalar `tinytex` ejecute en la consola:
+
+```{r, eval = F}
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+<!---
+ Si se genera un error como `destino /XXX/XXX/ sin permisos de escritura`, solo necesita
+dar los permisos de escrita a este directorio (y esto solo se puede hacer con permisos de 
+administrador). To do this, run this command in the terminal:
+
+
+    sudo chown -R `whoami`:admin /usr/local/bin
+
+and then try the above install instructions again. More information about `tinytex` can be found [here](https://yihui.name/tinytex/)
+
+--> 
+
+### Acabo de ejecutar un comando pera no pasa nada
+
+Esto puede ocurrir porque no completó el comando: ¿Se muestra un pequeño signo `+` en su consola?
+R le esta diciendo que está esperando a que termine de entregar los comandos. En el ejemplo de más
+abajo falta cerrar el paréntesis.
+
+```{r, eval=FALSE}
+> x <- seq(1, 10
++ 
+```
+
+Se puede simplemente cerrar el paréntesis y apretar enter, o `esc` dos veces, lo que va a cancelar cancelar
+la ejecución del comando.
+
+### R dice que mi objeto no puede ser encontrado
+
+Este error es muy común en usuarios nuevos: `Error in mean(myobject) : object 'myobject' not found`
+
+Esto significa que el objeto llamado `myobject` no existe en el ambiente de trabajo. Las razones más 
+comunes para este error son:
+
+- **Error de tipeo**: asegúrese que el nombre de su objeto esta bien escrito, R hace diferencias
+entre mayúsculas y minúsculas. Debe estar escrito _exactamente_ como fue creado.
+- **No fue asignado a una variable**: note que los objetos sólo son guardados en el ambiente de trabajo
+si fueron asignado con el operador de asignación, ej: `myobject <- read.csv(...)`.
+- **No ejecute la linea en RMarkdown**: recuerde que escribir una línea de código en RMarkdown no es lo
+mismo que escribirla en la consola, usted tiene que ejecutar la línea de código usando _control + enter_,
+ejecutando la sección de código o por alguna de las otras formas que fueron descritas en la sección \@ref(ejecutarCodEnRmd) de este mismo capítulo.
+
+## Análisis literal
+
+RMarkdown es una excelente forma de generar análisis literales y flujos de trabajo reproducibles. [Aquí](https://nceas.github.io/sasap-training/materials/reproducible_research_in_r_fairbanks/example-brood-table-analysis.html) hay un ejemplo en inglés de un flujo de trabajo real escrito utilizando RMarkdown.
+

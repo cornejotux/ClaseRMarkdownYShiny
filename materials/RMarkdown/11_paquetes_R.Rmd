@@ -1,0 +1,245 @@
+# Creando Paquetes de R
+
+## Objetivos
+
+En este capítulo veremos:
+
+- Las ventajas de usar paquetes de R para organizar el código
+- Técnicas simples para crear paquetes de R
+- Aproximaciones para documentar el código en los paquetes creados
+
+## ¿Por qué usar paquetes?
+
+La mayoría de los usuarios de R están acostumbrados a cargar y utilizar paquetes en su trabajo. Además, sabe cuan rico es
+CRAN para proveer soluciones para muchas de sus necesidades. Sin embargo, la mayoría de la gente nunca ha creado sus propios
+paquetes y piensa que el proceso es muy complicado. Realmente es bastante simple, directo y extremadamente útil para el
+trabajo personal. La creación de paquetes sirve principalmente en dos casos:
+
+- Como mecanismo para compartir/distribuir códigos reusables (incluso si sólo es para uso personal).
+- Como mecanismo para reproducir documentos de análisis, modelos y resultados.
+
+A lo menos se puede crear un paquete para nuestras propias funciones de código más útiles, haciéndolas más fáciles de mantener
+y usar, estas herramientas pueden servir para más de un proyecto en el que trabaje.
+
+Los paquetes `usethis`, `devtools` y `roxygen2` hacen que la creación y mantención de paquetes de R se experiencia sencilla.
+
+## Instalación y carga de los paquetes
+
+```{r, eval=FALSE}
+library(devtools)
+library(usethis)
+# install.packages("roxygen2")
+library(roxygen2)
+```
+
+## Creación de un paquete básico
+
+Gracias al excelente paquete [usethis](https://github.com/r-lib/usethis), solo toma llamar la función `create_package()` 
+para crear el esqueleto necesario de un paquete de R. Esto elimina la mayor parte de las razones de procastinación. 
+Entonces, para crear el paquete llamado `mytools` se hace:
+
+```{r, eval=FALSE}
+setwd('..')
+create_package("mytools")
+```
+
+    ✔ Setting active project to '/Users/jones/development/mytools'
+    ✔ Creating 'R/'
+    ✔ Creating 'man/'
+    ✔ Writing 'DESCRIPTION'
+    ✔ Writing 'NAMESPACE'
+    ✔ Writing 'mytools.Rproj'
+    ✔ Adding '.Rproj.user' to '.gitignore'
+    ✔ Adding '^mytools\\.Rproj$', '^\\.Rproj\\.user$' to '.Rbuildignore'
+    ✔ Opening new project 'mytools' in RStudio
+
+Esto va a crear la estructura de directorios, incluyendo los archivos críticos bajo la [Estructura Estandard de Paquetes de
+R](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure). De los cuales el más importante es el 
+archivo `DESCRIPTION`. Este documento provee los metadatos sobre el su paquete. Edite este archivo `DESCRIPTION` para 
+entregar los valores que sean razonables para cada campo, incluyendo su información de contacto. 
+
+La información necesaria para elegir una licencia (LICENSE) se puede encontrar en los documentos (en inglés) [Extending
+R](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Licensing). El archivo DESCRIPTION espera que elija una
+licencia desde una lista predefinida, puede usar varias métodos para definir el archivo de licencia, como es por ejemplo
+la licencia `Apache 2`:
+
+```{r, eval=FALSE}
+use_apl2_license(name="Jorge Cornejo")
+```
+
+    ✔ Setting License field in DESCRIPTION to 'Apache License (>= 2.0)'
+    ✔ Writing 'LICENSE.md'
+    ✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'
+
+Una vez que la licencia ya fue elegida y ha editado el archivo DESCRIPTION con su información de contacto, un título y una
+descripción, se verá algo como esto:
+
+```{r, eval=FALSE}
+Package: mytools
+Title: Funciones de utilidad creadas por Jorge Cornejo
+Version: 0.1
+Authors@R: "Jorge Cornejo <jorge.cornejo@ifop.cl> [aut, cre]"
+Description: El paquete mytools containe funciones utilitarias para cuando necesito hacer cosas.
+Depends: R (>= 3.6.0)
+License: Apache License (>= 2.0)
+LazyData: true
+```
+
+## Agregando su código
+
+El paquete esqueleto creado contiene un directorio `R` que es donde se deben dejar los archivos fuentes. Agregue sus funciones
+y clases en los archivos de este directorio. Trate de elegir nombres que no existan en otros paquetes para que no entren en
+conflictos. Por ejemplo, se puede agregar un archivo `environemnt_info.R` que contiene la función `environment_info()` que
+podría querer re-usar. Esto puede dejar mucho que desear..., pero se entiende.
+
+La función `usethis::use_r()` le va a ayudar a dejar los archivos en los directorios adecuados, para eso use por ejemplo:
+
+```{r eval=FALSE}
+use_r("environment_info")
+```
+
+    ● Modify 'R/environment_info.R'
+
+esto crea el archivo `R/environment_info.R`, que ahora puede modificar para agregar la implementación de la siguiente 
+función:
+
+```{r eval=FALSE}
+environment_info <- function(msg) {
+    print(devtools::session_info())
+    print(paste("También imprime el mensaje entrante: ", msg))
+}
+```
+
+Si su código R depende de funciones de otro paquete, entonces tiene que declararlo en la lista `Imports` del archivo 
+`DESCRIPTION` de su paquete de R. El ejemplo de arriba depende del paquete `devtools`, por consiguiente debemos ponerlo
+en el listado de dependencias. Nuevamente, `usethis` entrega un método de ayuda muy útil:
+
+```{r eval=FALSE}
+usethis::use_package("devtools")
+```
+
+    ✔ Adding 'devtools' to Imports field in DESCRIPTION
+    ● Refer to functions with `devtools::fun()`
+
+## Agregando la documentación
+
+Es necesario incluir documentación para cada una de las funciones y clases que se incluyan en el paquete. Esto se puede hacer
+usando la aproximación de `roxygen2` que provee comentarios incorporados en los archivos con el código fuente, que a su vez son convertidos a páginas de manuales y otros para documentación de R. Es importante que siempre se asegure de definir el propósito
+general de la función y cada uno de sus parámetros.
+
+```{r}
+#' Una función para imprimir información sobre el ambiente de trabajo de R.
+#'
+#' Esta función imprime el ambiente de trabajo actual y un mensaje.
+#' @param msg El mensaje que quiere imprimir
+#' @keywords debugging
+#' @import devtools
+#' @export
+#' @examples
+#' environment_info("Este es un mensaje importante de su auspiciador.")
+environment_info <- function(msg) {
+    print(devtools::session_info())
+    print(paste("Además imprime el mensaje entrante: ", msg))
+}
+```
+
+Una vez que sus archivos están documentados se puede proceder a generar la documentación usando usando la función `document()`
+para generar los archivos .Rd que el paquete necesita.
+
+```{r, eval = F}
+document()
+```
+
+    Updating mytools documentation
+    Updating roxygen version in /Users/jones/development/mytools/DESCRIPTION
+    Writing NAMESPACE
+    Loading mytools
+    Writing NAMESPACE
+    Writing environment_info.Rd
+
+Y eso es realmente. Ahora tiene un paquete que puede `check()` (verificar), `install()` (instalar) y `release()` (publicación).
+
+## Verifique su paquete
+
+Ahora que ya tiene todo listo, puede verificar su código usando el marco de referencia de verificaciones `tetsthat`. La
+función `ussethis::use_testthat()` va a preparar su paquete de R para verificar su funcionamiento y luego puede usar la
+función `use_test()` para configurar archivos individuales de verificación. Por ejemplo, si quiere crear un test de las
+funciones en environment_info, puede hacer:
+
+```{r eval = FALSE}
+usethis::use_testthat()
+```
+    ✔ Adding 'testthat' to Suggests field in DESCRIPTION
+    ✔ Creating 'tests/testthat/'
+    ✔ Writing 'tests/testthat.R'
+    
+```{r eval = FALSE}
+usethis::use_test("environment_info")
+```
+    ✔ Writing 'tests/testthat/test-environment_info.R'
+    ● Modify 'tests/testthat/test-environment_info.R'
+
+Ahora puede agregar los test a `test-environment_info.R` y ejecutarlos usando `devtools::test()`. Por ejemplo, si quiere 
+agregar un test al archivo `test-environment_info.R`:
+
+```{r eval=FALSE}
+test_that("Un mensaje está presente", {
+    capture.output(result <- environment_info("Un mensaje único"))
+    expect_match(result, "Un mensaje único")
+})
+```
+
+Ejecutelos para estar seguro que todas sus funciones estan trabajando como se espera usando la función `devtools::test()`:
+
+```{r eval=FALSE}
+devtools::test()
+```
+
+    Loading mytools
+    Testing mytools
+    ✔ | OK F W S | Context
+    ✔ |  2       | test-environment_info [0.1 s]
+    
+    ══ Results ══════════════════════════════════════════════════════════════════════════════════════════════════════════════
+    Duration: 0.1 s
+    
+    OK:       2
+    Failed:   0
+    Warnings: 0
+    Skipped:  0
+
+Si, todo funciona!!
+
+## Verificando e instalando el paquete R creado
+
+Ahora que ya tenemos el paquete listo, podemos verificar su consistencia y que este completo usando la función `check()`.
+Haciendo pasado esta verificación se puede instalar localmente usando `install()`. Recuerde que esta instalación **debe**
+ejecutarse desde el directorio padre del módulo.
+
+```{r, eval = FALSE}
+check()
+install()
+```
+
+El paquete que usted creó está ahora disponible para ser usado en el ambiente local de R.
+
+## Compartiendo y publicando su paquete de R
+
+La forma más simple de compartir el paquete R con otros es subiéndolo a un [repositorio GitHub](https://github.com), esto
+permite que sea instalado por otros usando la función `install_github('mytools','github_username')` incluida en el paquete
+`devtools`.
+
+Si su paquete puede ser útil para una mayor cantidad de gente, debería considerar publicardo en el sitio CRAN, para esto se
+puede usar el método `release()` presente en `devtools(). Publicar (releasing) un paquete al CRAN requiere un trabajo bastante
+arduo para asegurarse que sigue los estándares definidos por la comunidad R, pero es totalmente posible y una valiosa 
+contribución a la comunidad científica. Si está considerando publicar un paquete en forma más amplia, puede encontrar que
+el apoyo de la comunidad en [ROpenSci](https://ropensci.org), ellos entregan una valiosa ayuda y retroalimentación a través
+de su proceso de inducción.
+
+## Más lecturas
+
+- Hadley Wickham's awesome book: [R Packages](http://r-pkgs.had.co.nz/)
+- Thomas Westlake's blog [Writing an R package from scratch](https://r-mageddon.netlify.com/post/writing-an-r-package-from-scratch/)
+
+
+

@@ -1,5 +1,4 @@
-## Materials
+## Materiales
 
-- [Fairbanks: Reproducible Analysis in R](/materials/reproducible_research_in_r_fairbanks/index.html)
-- [Juneau: Reproducible Analysis in R](/materials/reproducible_research_in_r_juneau/index.html)
-- [Anchorage: Reproducible Analysis in R](/materials/reproducible_research_in_r_anchorage/index.html)
+- [Clase: Introducción a las aplicaciones web interactivas con Shiny](/materials/Shiny)
+- [Clase: Introducción a la Investigación Reproducible con RMarkdown](/materials/RMarkdown)
