@@ -1,6 +1,6 @@
-baseURL = "https://nceas.github.io/sasap-training"
+baseURL = "https://cornejotux.github.io/ClaseRMarkdownYShiny/"
 languageCode = "en-us"
-title = "State of Alaska's Salmon and People"
+title = "Investigacion Reproducible con RMarkdown y Shiny"
 theme = "gohugo-theme-ananke"
 googleAnalytics = ""
 disqusShortname = ""
@@ -13,17 +13,17 @@ canonifyURLs = true
     post = "/:year/:month/:day/:slug/"
 
 [[menu.main]]
-    name = "Events"
+    name = "Eventos"
     url = "/events"
     weight = 2
 [[menu.main]]
-    name = "Materials"
+    name = "Materiales"
     url = "/materials"
     weight = 5
 
 
 [params]
-    description = "Tools and techniques for salmon data management and analysis"
+    description = "Clase para hacer investigacion reproducible usando RMarkdown y para desarrollar aplicaciones Shiny"
     custom_css = ["/css/sasap.css"]
 
     # options for highlight.js (version, additional languages, and theme)
