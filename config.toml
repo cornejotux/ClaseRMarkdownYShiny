@@ -1,0 +1,54 @@
+baseURL = "https://cornejotux.github.io/claseRMarkdown"
+languageCode = "es-CL"
+title = "Investigación Reproducible"
+theme = "gohugo-theme-ananke"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+# canonifyURLs
+# keep this true when deployed but false when developing locally
+canonifyURLs = true
+toc = false
+relativeurls = true
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Eventos"
+    url = "/events"
+    weight = 2
+[[menu.main]]
+    name = "Materiales"
+    url = "/materials"
+    weight = 5
+
+
+[params]
+    description = "Herramientas y técnicas para la investigación reproducible en IFOP"
+    custom_css = ["/css/ADC.css"]
+
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.11.0"
+    highlightjsCDN = "//cdn.bootcss.com"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "github"
+
+    MathJaxCDN = "//cdn.bootcss.com"
+    MathJaxVersion = "2.7.1"
+
+    facebook = ""
+    twitter = "https://twitter.com/cornejotux"
+    instagram = ""
+    youtube = ""
+    github = "https://github.com/cornejotux/claseRMarkdown"
+    linkedin = ""
+    # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+    background_color_class = "bg-dark-gray"
+    featured_image = "./images/Abate.png"
+
+    [params.logo]
+    url = "./images/Logo_Ifop.jpg"
+    width = 50
+    height = 50
+    alt = "Logo"

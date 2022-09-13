@@ -1,0 +1,374 @@
+# Introducción a R
+
+## Objetivos
+
+En este capítulo veremos:
+
+- Como Orientarse dentro de la interfase de RStudio.
+- Como trabajar en la consola de R.
+
+## Introducción y Motivación
+
+Existe una comunidad muy activa que colectivamente desarrolla herramientas de programación potentes, 
+de código abierto y cada vez más fáciles de usar. El progreso actual en relación a las herramientas 
+de programación permiten que aprender a escribir códigos computacionales sea cada vez más fácil. 
+Esto hace posible que se incorpore la programación a los procesos de análisis, haciendo a la ciencia 
+más eficiente y computacionalmente reproducible. 
+
+En este curso vamos a usar el lenguaje de programación R y con el Ambiente de Programación Integrada 
+o IDE por sus siglas en inglés (Integrated Development Environment) **RStudio**. R es un lenguaje 
+ideal para aprender programación orientada a los datos ya que ampliamente utilizada por la comunidad 
+científica, es amigable con el usuario (user-friendly) y lo más importante, _es de código abierto_ 
+(open source). 
+
+Entonces, ¿cuáles son las diferencias entre _R_ y _RStudio_? Aquí les presento una analogía como punto
+de partida. **Si usted fuera un chef, _R_ es un cuchillo.** Usted tiene comida para preparar y el 
+cuchillo es una de las herramientas que va a usar para realizar esta tarea.
+
+Y **si _R_ es un cuchillo, entonces _RStudio_ es la cocina**. ¡_RStudio_ le entrega el lugar donde puede
+realizar todo su trabajo! Como pueden ser otras herramientas, comunicaciones, acceso a la comunidad y así
+hace de su vida como chef más fácil. Ahora, como científico, RStudio hace su vida más fácil poniendo
+todas las herramienta que usted necesita en un mismo lugar, de esta forma puede trabajar en forma
+más eficiente. Algunas de las herramientas que puede encontrar son un navegador de archivos, visor 
+de datos, páginas de ayuda, terminal, comunidad de usuairos, soporte y la lista suma y sigue. De esta 
+forma, es fácil ver que RStudio es mucho más que sólo una infraestructura (la interfase del usuario o 
+IDE). Entonces, si bien es posible preparar comida sin una cocina, es totalmente posible aprender y 
+trabajar en R sin usar RStudio, sin embargo eso no es lo que vamos hacer. Nosotros vamos a aprovechar los 
+beneficios de usar RStudio y aprenderemos R y RStudio al mismo tiempo.
+
+```{r rueda, echo=FALSE, out.width = '50%', fig.align = 'center', fig.cap = 'Usar R sin RStudio es como tener una rueda cuadrada. No tiene sentido.'}
+knitr::include_graphics("images/4.1_rueda.jpg")
+```
+Para tener en cuenta: Vamos a aprender un nuevo lenguaje (de programación). Este es un proceso que toma
+tiempo, se cometerán errores, puede resultar frustrante, pero a largo plazo va a ser genial. Todos 
+hablamos a lo menos un lenguaje; aprender un leguaje de programación es un proceso similar, de verdad.
+No importa cuán fluido sea en su lengua materna, siempre se puede aprender algo nuevo, se tratan cosas
+en un nuevo contexto, se aprenden sinónimos o el significado nuevo que se le da a una palabra en otro 
+país, etc. Y como cualquier otra forma de comunicación, se producirán malos entendidos que pueden ser 
+frustrantes, pero a la larga, todos terminaremos siendo mejores si aprendemos de ellos.
+
+Así como un lenguaje es un concepto familiar, lenguajes de programación existen en un contexto diferente 
+de los lenguajes hablados, pero vamos a llegar a conocer este contexto con el tiempo. Por ejemplo: 
+tenemos un concepto que es la primera comida del día y tenemos un nombre para describirla: en español 
+esa palabra es "_desayuno_". Si usted aprende inglés, puede esperar que exista una palabra para expresar
+este concepto de la primera comida del día (esa palabra es "breakfast"). **Vamos a llegar al punto en 
+que usted va a esperar la existencia de ciertas palabras en un lenguaje de programación (llamados 
+funciones en R) que representen conceptos**. Pronto, usted va a esperar que exista una forma de ordenar
+valores en forma numérica o alfabética, para buscar patrones en un texto, calcular la media o mediana,
+reorganizar columnas en una fila, extraer un subset de datos, etc. Paso a paso, vamos a ir incrementando
+sus expectativas y aprenderán como preguntarle a R y RStudio ára encontrar las _palabras_ que están
+buscando.
+
+### Recursos
+
+Este curso es una traducción libre, modificada y adaptada de una grupo de excelentes clases y materiales
+desarrollados por otros autores. Muchas gracias al Data Task Force de [NCEAS](http://www.nceas.ucsb.edu),
+en especial a Jeannette Clark, Jared Kibele, Matt Jones, del cual también fui parte, quienes desarrollaron
+la versión original de este curso en Inglés. A  Julie Lowndes por escribir la mayoría del contenido y 
+compartilo para ser usado de base al contenido desarrollado por el Data task Force. El material de Julie 
+esta a su vez está basado en el de Jenny Bryan. 
+
+Todo el material original sobre el cual está basado este curso está en inglés, sin embargo les recomiendo
+darle una mirada y usarlos como referencias:
+
+[Julie Lowndes' Data Science Training for the Ocean Health Index](http://ohi-science.org/data-science-training/)
+
+- [R, RStudio, RMarkdown](http://ohi-science.org/data-science-training/rstudio.html)
+- [Programming in R](http://ohi-science.org/data-science-training/programming.html)
+
+
+[Jenny Bryan's lectures from STAT545 at UBC](https://stat545-ubc.github.io/)
+
+- [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html)
+- [Basic care and feeding of data in R](http://stat545-ubc.github.io/block006_care-feeding-data.html)
+
+RStudio (también en inglés): 
+
+- [webinars](https://www.rstudio.com/resources/webinars/) 
+- [cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
+
+Finalmente, el libro _R for Data Science_ por Hadley Wickham es un recurso genial para profundizar en estos temas.
+
+- [R for Data Science](http://r4ds.had.co.nz/)
+
+Otros recursos relacionados:
+
+- [Formate de ecuaciones en LaTeX](https://www.caam.rice.edu/~heinken/latex/symbols.pdf)
+- [Base R Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf)
+- [RMarkdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+- [MATLAB/R Translation Cheat Sheet](http://mathesaurus.sourceforge.net/octave-r.html)
+
+
+## R en la consola
+
+Y ahora manos a la obra.
+
+Inicie RStudio/R.
+
+
+```{r RStudioIDE, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Captura de pantalla de la interfase de desarrollo de RStudio.'}
+knitr::include_graphics("images/4.2_RStudio_IDE.png")
+```
+
+Identifique los paneles que se abren por defecto:
+
+  * Consola (Todo el espacio a la izquierda)
+  * Ambiente/Historial (Pestañas al lado superior derecho)
+  * Archivos/Gráficos/Paquetes/Ayuda (Pestañas al lado inferior derecho)
+
+> Es posible cambiar la ubicación por defecto de los paneles, entre otra muchas
+> cosas: [Configurando RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
+> (En inglés). 
+
+Una primera pregunta importante: **¿Dónde estamos?** 
+
+Si usted  abre RStudio por primera vez, se va a encontrar en el directorio Home. Esto se denota por como
+`~/` en la barra superior de la consola (destacado en rojo en la figura \@ref(fig:RStudioIDEhomeDir)). 
+Es esta figura es posible ver también el panel de archivos en el lado inferior derecho, donde se muestra
+que está en el directorio Home. Usted puede navegar con el explorador de archivos, pero note que 
+no es posible cambiar donde está trabajando: incluso cuando haga clic el otros directorios, la consola
+seguirá estando en el directorio Home: `~/`. 
+
+```{r RStudioIDEhomeDir, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Consola de R en la interfase de usuario de RStudio.'}
+knitr::include_graphics("images/4.3_RStudio_IDE_homedir.png")
+```
+
+OK vamos ahora a la consola, aquí se puede interactuar con el proceso de R en forma interactiva.
+
+Vamos a usar R para calcular hacer algunos cálculos matemáticos simples.
+
+```{r}
+3*4
+```
+
+Usted puede asignar un valor de una operación matemática a una variable u objeto en R. Para esto se
+utiliza el operador de asignación `<-`.
+
+Haga una asignación y luego inspeccione el objeto que acaba de crear.
+
+```{r}
+x <- 3 * 4
+x
+```
+
+Esas operaciones yo las leo como 'asigne el valor resultante de la operación 3*4 a **x**'.
+
+Todas las declaraciones en R donde usted crea objetos -- "asignaciones" -- tienen esta forma: 
+`nombreObjeto <- valor`.  
+
+Ahora voy a incluir en la consola el símbolo gato o hash `#` seguido de un texto, esta es la forma 
+en que R reconoce que esa línea corresponde a un comentario y no lo evalúa.
+
+```{r eval = FALSE}
+## nombreObjecto <- valor
+
+## Esta es la forma en que se escriben textos en el código para explicar que es lo que 
+## se está haciendo.
+```
+
+Los nombres de objetos en R no pueden comenzar con números o contener algunos caracteres reservados
+como son la coma "," o espacios en blanco. Es útil adoptar la [estándares de nomenclatura]
+(http://programacion.jias.es/2017/09/estandares-de-nomenclatura-snake-case-kebab-case-camel-case/)
+en los nombres de variables.
+
+```{r}
+# yo_uso_snake_case
+# otra.gente.usa.puntos
+# yOtrosUsanCamelCase
+```
+
+Asignando un valor a una variable
+
+```{r}
+este_es_un_nombre_muy_largo <- 2.5
+```
+
+Para inspeccionar esta variable, en vez que escribirla completa, podemos apretar la flecha hacia 
+arriba y llamar al historial de comandos, apareciendo los comandos más recientes primero. Ahora 
+intente hacer eso y luego borre la asignación (`<- 2.5`): 
+
+```{r}
+este_es_un_nombre_muy_largo
+```
+
+Otra forma de inspeccionar esta variable es escribiendo el inicio `este_`... y luego presionando la 
+techa _Tab_, de esta forma RStudio le va a ofrecer los objetos cuyor nombre comienzan de esa forma, 
+entre las que puede seleccionar apretando return.
+
+Y una más
+
+```{r}
+la_ciencia_es_genial <- "Si lo es!!!"
+```
+
+Aquí se puede ver que es posible hacer asignaciones de palabras y no únicamente números. En R, un 
+objeto compuesto por palabras se conoce como "string" y R los reconoce como una palabra y no un 
+número porque están en comillas `" "`. En R se puede trabajar con datos basados en texto (strings) 
+en forma muy simple gracias a los paquetes [`stringr`](http://stringr.tidyverse.org/) y  [`tidytext`](https://github.com/juliasilge/tidytext#tidytext-text-mining-using-dplyr-ggplot2-and-other-tidy-tools).
+No vamos a hablar mucho de este tipo de datos, por ahora sólo recuerde que R puede manejar texto y 
+con números en forma combinada.
+
+El hablar de strings y números nos lleva a abordar un concepto muy importante en programación: 
+las diferentes _clases_  o _tipos de objetos_. Un objeto puede ser muchas cosas, por ejemplo una 
+variable, una función, una estructura de datos, un método que haya escrito en un ambiente de 
+desarrollo. Usted puede ver que objetos están cargados en el panel Environment (ambiente) en RStudio.
+Las operaciones que se pueden hacer con un objeto van a depender del tipo de objeto que es. ¡¡Esto
+tiene mucho sentido!! Por ejemplo, no es posible hacer operaciones matemáticas con un objeto de
+caracteres (string).
+
+Trate de ejecutar lo siguiente en la línea de comandos de su consola:
+
+```{r, eval = F}
+"Hola mundo!" * 3
+```
+
+¿Qué pasó? ¿Por qué?
+
+Usted debería haber notado que cuando se asigna un valor a un objeto, R no imprime el valor por
+pantalla. Se puede forzar a R a imprimir por pantalla poniendo un paréntesis en la asignación del
+valor o escribiendo el nombre del objeto:
+
+```{r, purl=FALSE}
+peso_kg <- 55    # Esto no imprime nada
+(peso_kg <- 55)  # pero al poner parentesis alrededore se imprime el valor de `peso_kg`
+peso_kg          # y tambien esto lo hace al escribir el nombre del objeto
+```
+
+Ahora que R tiene `peso_kg` en la memoria, podemos utilizar esta variable para hacer operaciones 
+aritméticas. Por ejemplo, podemos querer convertir este peso a libras (libras es 2.2 veces el peso
+en kilogramos):
+
+```{r}
+2.2 * peso_kg
+```
+
+También es posible cambiar el valor de la variable asignando una nueva:
+
+```{r}
+peso_kg <- 57.5
+2.2 * peso_kg
+```
+
+Esto significa que al asignar el valor a una variable, no cambia el valor de la otras variables. 
+Por ejemplo, asignemos el valor del peso del animal en libras a `peso_lb`:
+
+```{r}
+peso_lb <- 2.2 * peso_kg
+```
+
+y ahora cambiemos `peso_kg` a 100.
+
+```{r}
+peso_kg <- 100
+```
+
+¿Cuál cree que es el valor ahora del objeto `peso_lb`? ¿126.5 o 220? ¿Por qué?
+
+También es posible almacenar más de un valor en un único objeto. Almacenar una series de pesos en
+un sólo objeto es una forma muy conveniente de desarrollar un misma operación en múltiples valores 
+al mismo tiempo. Para hacer esto se puede usar la función `c()`, que se refiere a la acción de 
+_combinar_ o _concatenar_.
+
+Aquí vamos a crear un _vector_ de pesos en kilogramos y vamos a convertirlos todos a libras,
+asignando el peso en libras a un nuevo objeto.
+
+```{r}
+peso_kg <- c(55, 25, 12)
+peso_kg
+```
+
+```{r}
+peso_lb <- peso_kg * 2.2
+peso_lb
+```
+
+
+### Los mensajes de error son sus amigos
+
+_Contrato implícito con el lenguaje de computador/codificación_: Un computador hará todas las 
+computaciones tediosas por usted. Usted tiene que ser completamente explícito y preciso son sus 
+instrucciones. Errores ortográficos importan. Mayúsculas importan. ¡Tiene que poner atención a 
+como escribe!
+
+Recuerde que este es un lenguaje ¡No demasiado distinto al español!. Hay tiempos en los que la
+gente no entiende lo que usted dice -- Eso pasa y va a pasar nuevamente y hay diferentes formas 
+en que esto puede pasar. Algunas  veces se obtendrá un error. Esto es similar a cuando alguien 
+le dice ¿Qué? o ¿Puede repetir por favor? No logro entenderlo. Los mensajes de error son muy 
+útiles en este sentido, porque le indican cuales son las partes específicas en las que no le 
+lograron entender. Este es el mejor tipo de errores que se pueden obtener. Los mensajes de error
+son sus amigos. Búsquelos en Google (¡Copiar y Pegar!) para descubrir que es lo que significan 
+y como los puede corregir.
+
+```{r googleError, echo=FALSE, out.width = '50%', fig.align = 'center', fig.cap = '.'}
+knitr::include_graphics("images/4.4_practicalDev_googleErrorMessage.jpg")
+```
+
+Pero también hay que tener en cuenta que hay errores que pueden aparecen en forma mucho mas sutil,
+sin un mensaje de error que lo indique. Esto sucede cuando se le da información que el computador
+entiende, pero que no es exactamente lo que se quiso decir. Es como si yo contara un historia sobre
+tablas y usted se imagina una con la que va a construir una repisa, sin embargo yo estoy hablando 
+de tablas de datos. Esto puede llevarme a pensar que logré transmitir la información que me 
+interesaba a mi audiencia (o a R) sin embargo, lo que dije fue interpretado en una forma completamente 
+distinta a lo que estaba tratando de decir. Y en la medida que yo sigo hablando se genera más y 
+más confusión... Entonces, es muy importante que se escriban los códigos de una forma lo más limpia
+y clara, verificando que el código hace lo que quiere que haga, minimizando las confusiones y malos
+entendidos.
+
+### Operadores y expresiones lógicas
+
+Vamos a tomarnos un momento para hablar sobre **operadores y expresiones lógicas** ya que nos permiten
+hacer preguntas sobre los objetos que hemos creado.
+
+- `==` significa 'es igual a'
+- `!=` significa 'no es igual a'
+- `<` significa 'es menor a'
+- `>` significa 'es mayor a'
+- `<=` significa 'es menor o igual a'
+- `>=` significa 'es mayor o igual a'
+
+```{r}
+peso_kg == 2
+peso_kg >= 30
+peso_kg != 5
+```
+
+> Atajos del teclado: En su vida como programador de R se van a realizar muchas asignaciones y 
+el operador `<-` es un dolor de cabeza para escribir. Sin embargo no sea flojo y **NO** se acostumbre 
+a usar `=`, aunque esto funciona, porque sólo le va a generar confusión más tarde. Es mucho mejor 
+utilizar los atajos con combinaciones de teclas para este fin, **en RStudio se obtiene combinando
+Alt + - (signo menos)**. Note que en RStudio los espacios alrededor de `<-` ¡aparecen en forma 
+automágica!, lo que demuestra una buena práctica para formatear el código. Los códigos (especialmente
+los ajenos) son miserables de leer en un buen día. Dele un descanso a sus ojos y SIEMPRE use los 
+espacios. RStudio tiene muchos [atajos de teclado shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts) 
+muy útiles. Uno importante de mencionar es Alt+Shift+K que muestra la tabla de referencias
+de las combinaciones de teclado.
+
+### Limpiando el ambiente de trabajo
+
+Ahora vamos a mirar los objetos que están en nuestro ambiente de trabajo (Environment) -- en el costado
+superior derecho. El ambiente de trabajo es donde se acumulan los objetos definidos por el usuario.
+
+```{r RStudioIDEenv, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Captura de pantalla de la interfase de desarrollo de RStudio con comando ejecutados.'}
+knitr::include_graphics("images/4.5_RStudio_IDE_env.png")
+```
+
+También se puede obtener una lista de los objetos creado usando los siguiente comandos en R:
+
+```{r}
+objects()
+ls()
+```
+
+Si quiere eliminar el objeto llamado `peso_kg` puede hacer lo siguiente:
+
+```{r}
+rm(peso_kg)
+```
+
+Para eliminar todo:
+
+```{r}
+rm(list = ls())
+```
+
+o hacer clic en el icono de la la escoba en el panel _Environment_ en RStudio.

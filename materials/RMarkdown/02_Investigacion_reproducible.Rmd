@@ -1,0 +1,56 @@
+Antes de comenzar con el material para la investigación reproducible, es necesario que 
+aprendamos sobre algunas herramientas fundamentales, como son RStudio, Git/Github y con 
+posterioridad comenzaremos a trabajar con _RMarkDown_.
+
+# Investigación reproducible: ¿De qué estamos hablando?
+
+## Objetivos
+
+En este capítulo veremos:
+
+- En qué consiste la reproducibilidad computacional y por que es útil e importante. 
+- La importancia del control de versiones para la reproducibilidad computacional.
+- Cómo verificar que el ambiente de RStudio está configurado adecuadamente para el análisis.
+- Cómo configurar _git_.
+
+## Investigación reproducible
+
+Las reproducibilidad es fundamental en la ciencia, que a su vez se basa en observaciones empíricas con las 
+que se construyen o define modelos explicativos.  
+La reproducibilidad por su parte, envuelve todo el ciclo de vida de la ciencia, incluyendo aspectos como la 
+consistencia metodológica y el tratamiento del sesgo. En este curso nos vamos a enfocar en la 
+**reproducibilidad computacional**, entendiendo esto como la habilidad de documentar datos, análisis y 
+modelos con la suficiente información para que otros investigadores sean capaces de entender e
+idealmente reproducir, paso a paso, el proceso que no a los resultados y conclusiones de nuestra
+investigación.
+
+### ¿Qué es necesario para la reproducibilidad computacional?
+
+El primer paso para abordar este problema es ser capaz de evaluar los datos, análisis y modelos con los
+que se sacan las conclusiones.  Considerando cuales son las prácticas más comunes, esto resulta bastante 
+difícil ya que la generalidad de los datos no se encuentran disponibles, la sección sobre la metodología
+de los informes y papers no describe en detalle las aproximaciones computacionales utilizadas o los 
+análisis y además los modelos son generalmente realizados en programas gráficos o, cuando se usan 
+ambientes tipo script, el código no se hace disponible.
+
+Sin embargo todos estos inconvenientes pueden ser fácilmente solucionados. Los investigadores pueden 
+lograr la reproducibilidad computacional con aproximaciones basada en las aproximaciones de 
+_ciencia libre_ (open science), siguiendo pasos simples para archivar y publicar (libremente) los datos
+y códigos fuentes utilizados, describiendo el flujo de trabajo y permitiendo de esta forma trazabilidad
+de los resultados (ej.:, @hampton_tao_2015, @munafo_manifesto_2017).
+
+### Conceptualizando los flujos de trabajo (workflows)
+
+El flujo del trabajo científico encapsula todos los pasos desde la 
+adquisición de los datos, limpieza, transformación, integración, análisis y 
+visualización.  
+
+```{r workflow, echo=FALSE, out.width = '100%', fig.align = 'center', fig.cap = 'Captura de un flujo de trabajo científico y procedencia de múltiples pasos necesarios para reproducir un resultado científico desde los datos crudos.'}
+knitr::include_graphics("images/2.1_workflow.png")
+```
+
+Una representación del flujo de trabajo puede variar desde simples diagramas de flujo (fig. 
+\@ref(fig:workflow)) a códigos totalmente ejecutables. Códigos de R y python son una forma literal de 
+plasmár el flujo de trabajo lo que cuando son publicados por investifacores, como versiones 
+específicas del código y los datos asociados, permite la repetibilidad de sus cómputos en forma simple
+y de esta forma entender la procedencia de las conclusiones.
