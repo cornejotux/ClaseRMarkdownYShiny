@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Investigacion Reproducible con RMarkdown y Shiny</title>
+    <link>https://cornejotux.github.io/ClaseRMarkdownYShiny/</link>
+    <description>Recent content on Investigacion Reproducible con RMarkdown y Shiny</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://cornejotux.github.io/ClaseRMarkdownYShiny/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Clase: Introducción a las aplicaciones web interactivas con Shiny</title>
+      <link>https://cornejotux.github.io/ClaseRMarkdownYShiny/events/2019_08_shiny-valparaiso/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cornejotux.github.io/ClaseRMarkdownYShiny/events/2019_08_shiny-valparaiso/</guid>
+      <description>Dates: Por definir, 2019
+Location: Valparaiso, Chile
+Venue: IFOP, Almte. Manuel Blanco Encalada 839, Valparaiso
+El Instituto de Fomento Pesquero, en su interés por el perfeccionamiento continuo, provee cursos y alternativas de entrenamiento dentro de los cuales se enmarca este curso. El objetivo principal es dar una introducción al uso de Shiny para desarrollar aplicaciones web interactivas para la visualizacion y analisis simples de datos, destinado especialmente a usuarios sin conocimientos en R.</description>
+    </item>
+    
+    <item>
+      <title>Investigación reproducible: Una Introducción con RMarkdown</title>
+      <link>https://cornejotux.github.io/ClaseRMarkdownYShiny/events/2019_07_valparaiso/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cornejotux.github.io/ClaseRMarkdownYShiny/events/2019_07_valparaiso/</guid>
+      <description>Dates: Por definir, 2019
+Location: Valparaiso, Chile
+Venue: IFOP, Almte. Manuel Blanco Encalada 839, Valparaiso
+El Instituto de Fomento Pesquero, en su interés por el perfeccionamiento continuo, provee cursos y alternativas de entrenamiento dentro de los cuales se enmarca este curso. El objetivo principal es introducir en la temática de la Investigación reproducible, incentivar su uso dentro de IFOP y desarrollar las destrezas necesarias en el uso de R, RStudio y RMarkdown como herramientas para la ciencia de datos e investigación reproducible gratuitas y ampliamente utilizadas en la comunidad científica.</description>
+    </item>
+    
+    <item>
+      <title>Investigación reproducible: Una Introducción con RMarkdown</title>
+      <link>https://cornejotux.github.io/ClaseRMarkdownYShiny/events/copyof2019_07_valparaiso/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cornejotux.github.io/ClaseRMarkdownYShiny/events/copyof2019_07_valparaiso/</guid>
+      <description>Dates: Por definir, 2019
+Location: Valparaiso, Chile
+Venue: IFOP, Almte. Manuel Blanco Encalada 839, Valparaiso
+El Instituto de Fomento Pesquero, en su interés por el perfeccionamiento continuo, provee cursos y alternativas de entrenamiento dentro de los cuales se enmarca este curso. El objetivo principal es introducir en la temática de la Investigación reproducible, incentivar su uso dentro de IFOP y desarrollar las destrezas necesarias en el uso de R, RStudio y RMarkdown como herramientas para la ciencia de datos e investigación reproducible gratuitas y ampliamente utilizadas en la comunidad científica.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cornejotux.github.io/ClaseRMarkdownYShiny/materials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cornejotux.github.io/ClaseRMarkdownYShiny/materials/</guid>
+      <description> Materiales  Clase: Introducción a las aplicaciones web interactivas con Shiny Clase: Introducción a la Investigación Reproducible con RMarkdown Clase: Introducción a la Investigación Reproducible con RMarkdown  </description>
+    </item>
+    
+  </channel>
+</rss>

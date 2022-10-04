@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Investigacion Reproducible con RMarkdown y Shiny  | Investigación reproducible: Una Introducción con RMarkdown</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.29" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://cornejotux.github.io/ClaseRMarkdownYShiny/dist/main.css' rel='stylesheet' type="text/css" />
+    
+    <link rel="stylesheet" href="https://cornejotux.github.io/ClaseRMarkdownYShiny/css/sasap.css">
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Investigación reproducible: Una Introducción con RMarkdown" />
+<meta property="og:description" content="Dates: Por definir, 2019
+Location: Valparaiso, Chile
+Venue: IFOP, Almte. Manuel Blanco Encalada 839, Valparaiso
+El Instituto de Fomento Pesquero, en su interés por el perfeccionamiento continuo, provee cursos y alternativas de entrenamiento dentro de los cuales se enmarca este curso. El objetivo principal es introducir en la temática de la Investigación reproducible, incentivar su uso dentro de IFOP y desarrollar las destrezas necesarias en el uso de R, RStudio y RMarkdown como herramientas para la ciencia de datos e investigación reproducible gratuitas y ampliamente utilizadas en la comunidad científica." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cornejotux.github.io/ClaseRMarkdownYShiny/events/copyof2019_07_valparaiso/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Investigación reproducible: Una Introducción con RMarkdown">
+<meta itemprop="description" content="Dates: Por definir, 2019
+Location: Valparaiso, Chile
+Venue: IFOP, Almte. Manuel Blanco Encalada 839, Valparaiso
+El Instituto de Fomento Pesquero, en su interés por el perfeccionamiento continuo, provee cursos y alternativas de entrenamiento dentro de los cuales se enmarca este curso. El objetivo principal es introducir en la temática de la Investigación reproducible, incentivar su uso dentro de IFOP y desarrollar las destrezas necesarias en el uso de R, RStudio y RMarkdown como herramientas para la ciencia de datos e investigación reproducible gratuitas y ampliamente utilizadas en la comunidad científica.">
+
+
+
+<meta itemprop="wordCount" content="611">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Investigación reproducible: Una Introducción con RMarkdown"/>
+<meta name="twitter:description" content="Dates: Por definir, 2019
+Location: Valparaiso, Chile
+Venue: IFOP, Almte. Manuel Blanco Encalada 839, Valparaiso
+El Instituto de Fomento Pesquero, en su interés por el perfeccionamiento continuo, provee cursos y alternativas de entrenamiento dentro de los cuales se enmarca este curso. El objetivo principal es introducir en la temática de la Investigación reproducible, incentivar su uso dentro de IFOP y desarrollar las destrezas necesarias en el uso de R, RStudio y RMarkdown como herramientas para la ciencia de datos e investigación reproducible gratuitas y ampliamente utilizadas en la comunidad científica."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-dark-gray">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://cornejotux.github.io/ClaseRMarkdownYShiny/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Investigacion Reproducible con RMarkdown y Shiny
+    </a>
+    <div class="flex-l items-center">
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://cornejotux.github.io/ClaseRMarkdownYShiny/events" title="Events page">
+              Events
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="https://cornejotux.github.io/ClaseRMarkdownYShiny/materials" title="Materials page">
+              Materials
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+  <a href="https://twitter.com/cornejotux" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+
+
+  <a href="https://github.com/cornejotux/claseRMarkdownYShiny" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw10 center">
+    <article class="center cf pv5 ph3 ph4-ns mw9">
+      <header>
+        <p class="f6 b helvetica tracked">
+          EVENTS
+        </p>
+        <h1 class="f1">
+          Investigación reproducible: Una Introducción con RMarkdown
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p><strong>Dates</strong>: Por definir, 2019<br>
+<strong>Location</strong>: Valparaiso, Chile<br>
+<strong>Venue</strong>: <a href="https://www.ifop.cl">IFOP</a>, Almte. Manuel Blanco Encalada 839, Valparaiso</p>
+
+<p>El Instituto de Fomento Pesquero, en su interés por el perfeccionamiento continuo, provee cursos y
+alternativas de entrenamiento dentro de los cuales se enmarca este curso. El objetivo principal es introducir
+en la temática de la <em>Investigación reproducible</em>, incentivar su uso dentro de IFOP y desarrollar las destrezas
+necesarias en el uso de <a href="https://www.r-project.org/">R</a>, <a href="https://www.rstudio.com/">RStudio</a> y
+<a href="https://rmarkdown.rstudio.com/">RMarkdown</a> como herramientas para la <em>ciencia de datos</em> e <em>investigación reproducible</em> gratuitas y ampliamente utilizadas en la comunidad científica.</p>
+
+<p>Al final de este curso se espera que los participantes tengan familiaridad con RMarkdown para utilizarlo para generar
+reportes en formato PDF y HTML que puedan compartir con otros investigadores, donde se describa los pasos para reproducir
+a cabalidad los resultados, desde la lectura de datos, su manipulación, análisis y producción de gráficos y tablas,</p>
+
+<p>Este taller de 3 días es una visión general sobre buenas prácticas, herramientas para la ciencia de datos y describe algunos pasos y métodos prácticos para documentar con facilidad el trabajo y asegurar su replicabilidad.</p>
+
+<p align="center">
+  <img src="https://www.rstudio.com/wp-content/uploads/2014/04/knitr-200x232.png"/>
+</p>
+
+<h2 id="sinopsis">Sinopsis:</h2>
+
+<p>Temas a incluir en el taller:</p>
+
+<ul>
+<li>Introducción al uso de RStudio y RMarkdown</li>
+<li>¿Qué es Investigación reproducible?</li>
+<li>Análisis literal con RMarkdown</li>
+<li>Control de versiones con GitHub (y paginas web)</li>
+<li>Modelamiento, limpieza y manejo de datos</li>
+</ul>
+
+<p>Para mas detalles de como prepararse para el taller, ver sección <a href="más abajo">Preparándose para el Taller</a>.</p>
+
+<h2 id="materiales">Materiales</h2>
+
+<ul>
+<li><a href="https://cornejotux.github.io/ClaseRMarkdownYShiny/materials/RMarkdown/index.html">Intro a RMarkdown</a></li>
+</ul>
+
+<h2 id="organizadores">Organizadores</h2>
+
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Email</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Jorge Cornejo</td>
+<td>jorge.cornejo@ifop.cl</td>
+</tr>
+
+<tr>
+<td>Alguien Máx?</td>
+<td>alguien.mas@ifop.cl</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="agradecimientos">Agradecimientos</h2>
+
+<p>El trabajo para preparar estos documentos esta basado en:</p>
+
+<ul>
+<li><a href="https://github.com/NCEAS/sasap-training">NCEAS SASAP-Training</a></li>
+<li><a href="https://github.com/NCEAS/arctic-data-training">NCEAS Arctic Data Center</a></li>
+</ul>
+
+<h2 id="preparándose-para-el-taller">Preparándose para el Taller</h2>
+
+<h3 id="software-requerido">Software Requerido</h3>
+
+<p>Necesitaremos usar un <em>navegador web</em>, <code>R</code>, RStudio, y <code>git</code>. Por favor asegúrese de que todos estos estén instalados en su computador portátil, las versiones mínimas requeridas son:</p>
+
+<ul>
+<li><p><strong>R:</strong> Usaremos R versión 3.6.0, la que puede ser instalada desde <a href="https://cran.rstudio.com">CRAN</a></p></li>
+
+<li><p><strong>RStudio</strong>: Para bajar RStudio, visite <a href="https://www.rstudio.com/products/rstudio/download/">RStudio&rsquo;s download page</a>.
+<em>Si no está seguro que es una versión reciente, por favor bájela y realice una actualización</em></p></li>
+
+<li><p><strong>Paquete de R:</strong> Por favor asegúrese de tener instalado y actualizados los siguientes paquetes de R:</p>
+
+<ul>
+<li>devtools</li>
+<li>dplyr</li>
+<li>DT</li>
+<li>ggplot2</li>
+<li>leaflet</li>
+<li>tidyr
+<br /></li>
+</ul>
+
+<p>Puede instalar rápidamente todos estos paquetes corriento el siguiente código en su <code>R</code>:</p>
+
+<pre><code class="language-r">packages &lt;- c(&quot;dataone&quot;, &quot;datapack&quot;, &quot;devtools&quot;, &quot;dplyr&quot;, &quot;EML&quot;, &quot;ggplot2&quot;, &quot;readxl&quot;, &quot;tidyr&quot;)
+</code></pre>
+
+<pre><code class="language-r">for (package in packages) {
+  if (!(package %in% installed.packages())) {
+    install.packages(package)
+  }
+}
+</code></pre></li>
+
+<li><p><strong>git:</strong> <a href="https://git-scm.com/downloads">Descargar git</a> e instalarlo en su sistema.</p></li>
+
+<li><p><strong>GitHub:</strong> Usaremos <a href="https://github.com">GitHub</a>, por favor crear (o recordar) su <em>login</em> a GitHub.</p></li>
+</ul>
+
+<h3 id="refrescando-sus-destrezas">Refrescando sus destrezas</h3>
+
+<p>Este taller asume un nivel básico de experiencia usando R para propósitos científicos y estadísticos.
+Sin embargo, sabes que no todos están en el mismo lugar en términos de familiaridad con la herramientas que usaremos.
+Si Ud. quiere refrescar su experiencia en R antes del taller, le recomiendo usar los siguientes recursos:</p>
+
+<p><strong>Están en inglés, pero prometo buscar alternativas en español y las agregaré en la medida que las vaya encontrando</strong></p>
+
+<ul>
+<li>The <a href="https://www.datacamp.com/tracks/data-scientist-with-r">Data Scientist with R</a> track at <a href="https://www.datacamp.com">DataCamp</a></li>
+<li>The <a href="http://www.datacarpentry.org/R-ecology-lesson/01-intro-to-r.html">Introduction to R</a> lesson in <a href="http://www.datacarpentry.org/R-ecology-lesson/">Data Carpentry&rsquo;s R for data analysis</a> course.</li>
+<li>The QCBS <a href="https://qcbs.ca/wiki/r">Introduction to R</a> lesson</li>
+<li><a href="https://www.rstudio.com/online-learning/">RStudio&rsquo;s R Programming</a> page</li>
+</ul>
+
+<p>Si eres fan de las <em>hojas de referencia</em> (cheat sheets), <a href="https://www.rstudio.com">RStudio</a> tiene un listado de algunas en su pagina <a href="https://www.rstudio.com/resources/cheatsheets/">Cheat Sheets</a>.</p>
+
+<p>En particular, revise:</p>
+
+<ul>
+<li>Base R</li>
+<li>Data Import</li>
+<li>Data Transformation with dplyr</li>
+<li>R Markdown</li>
+<li>Data Visualization with ggplot2</li>
+<li>R Markdown Reference Guide</li>
+<li>The leaflet package</li>
+</ul>
+
+<h2 id="participantes">Participantes</h2>
+
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Email</th>
+<th>Afiliación</th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<h2 id="consultas-y-comentarios">Consultas y comentarios</h2>
+
+<p>Estoy complemente abierto a responder consultas, comentarios y sugerencias. Por favor déjelos en como <a href="https://github.com/cornejotux/claseRMarkdown/issues">Nuevo tema</a> (<em>New Issue</em>) en la pagina del repositorio en <code>GitHub</code>, de esa forma queda asociado al material y no se me pierde en los miles de e-mail que me llegan a diario.</p>
+
+      </div>
+    </article>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://cornejotux.github.io/ClaseRMarkdownYShiny/" >
+    &copy; 2022 Investigacion Reproducible con RMarkdown y Shiny
+  </a>
+  
+
+
+
+  <a href="https://twitter.com/cornejotux" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+
+
+  <a href="https://github.com/cornejotux/claseRMarkdownYShiny" class="link-transition github link dib z-999 pt3 pt0-l mr2" title="Github link">
+    <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+  </a>
+
+
+  </div>
+</footer>
+
+    <script src="https://cornejotux.github.io/ClaseRMarkdownYShiny/dist/app.bundle.js" async></script>
+
+  </body>
+</html>
